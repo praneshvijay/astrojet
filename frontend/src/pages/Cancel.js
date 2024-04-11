@@ -27,7 +27,7 @@ const Cancel = () => {
             }
         }
         Delete();
-    }, []);
+    });
     return (
         <div>
             <h1>Your Payment has been cancelled</h1>

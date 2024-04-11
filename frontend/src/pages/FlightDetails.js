@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import Placemodify from "../components/PlaceModify";
 import { Navigate } from "react-router-dom";
 import Plane from "../components/Planes.js";
-import { useAuthContext } from "../hooks/useAuthContext.js";
 import Plane1 from "../components/Planes1.js";
 import Plane2 from "../components/Planes2.js";
 
@@ -11,15 +10,33 @@ export const detcontext = React.createContext();
 export const det1context = React.createContext();
 
 const FlightDetails = () => {
-    const { user } = useAuthContext();
     const location = useLocation();
-    const [loading, setLoading] = React.useState(true);
-    const [details, setDetails] = React.useState(location.state);
+    const [loading, setLoading] = useState(true);
+    const [details, setDetails] = useState(location.state);
     // console.log(details);
     const [data, setData] = React.useState([]);
     const [det1, setDet1] = React.useState({});
     const [det2, setDet2] = React.useState({});
     const [redirect, setRedirect] = React.useState(false);
+
+    function formatDate(inputDate) {
+      const date = new Date(inputDate);
+      const day = date.getDate();
+      let daySuffix = 'th';
+    
+      if (day === 1 || day === 21 || day === 31) {
+        daySuffix = 'st';
+      } else if (day === 2 || day === 22) {
+        daySuffix = 'nd';
+      } else if (day === 3 || day === 23) {
+        daySuffix = 'rd';
+      }
+    
+      const options = { month: 'short', year: 'numeric' };
+      const formattedDate = date.toLocaleDateString('en-US', options);
+    
+      return `${day}${daySuffix}, ${formattedDate}`;
+    }
 
     useEffect(() => {
         setLoading(true);   
@@ -64,6 +81,8 @@ const FlightDetails = () => {
         </div>
       );
     }
+    const fodate = formatDate(details.date);
+    const fordate = formatDate(details.returndate);
     if (details.option !== "one-way") {
         const HandleBook = (e) => {
           if (det1.id === undefined || det2.id === undefined) {
@@ -101,11 +120,11 @@ const FlightDetails = () => {
             </div>
               <div className="flights">
                 <h1 className="flights-header">Available Flights</h1>
-                <div className="details">
-                  <h3 className="date">Date: {details.date}</h3>
-                  <h3 className="source">Source: {details.from}</h3>
-                  <h3 className="destination">Destination: {details.to}</h3>
-                  <h3 className="class">Class: {details.class}</h3>
+                <div className="details-top">
+                  <h3 className="flight-name">Departing Flight</h3>
+                  <h3 className="trip">{details.from} - {details.to}</h3>
+                  <h3 className="date">{fodate}</h3>
+                  <h3 className="class">{(details.class === "bc")?"Business Class":"Economy Class"}</h3>
                   <h3 className="passengers">Passengers: {details.passengers}</h3>
                 </div>
                 {(data.flight1&&data.flight2&&data.flight1.length && data.flight2.length) ? (
@@ -122,11 +141,11 @@ const FlightDetails = () => {
                           />
                         );
                       })}
-                      <div className="details">
-                        <h3 className="date">Date: {details.returndate}</h3>
-                        <h3 className="source">Source: {details.to}</h3>
-                        <h3 className="destination">Destination: {details.from}</h3>
-                        <h3 className="class">Class: {details.class}</h3>
+                      <div className="details-top">
+                        <h3 className="flight-name">Returning Flight</h3>
+                        <h3 className="trip">{details.to} - {details.from}</h3>
+                        <h3 className="date">{fordate}</h3>
+                        <h3 className="class">{(details.class === "bc")?"Business Class":"Economy Class"}</h3>
                         <h3 className="passengers">Passengers: {details.passengers}</h3>
                       </div>
                       {data.flight2.map((available) => {
@@ -166,13 +185,13 @@ const FlightDetails = () => {
         </div>
         <div className="flights">
           <h1 className="flights-header">Available Flights</h1>
-          <div className="details">
-            <h3 className="date">Date: {details.date}</h3>
-            <h3 className="source">Source: {details.from}</h3>
-            <h3 className="destination">Destination: {details.to}</h3>
-            <h3 className="class">Class: {details.class}</h3>
-            <h3 className="passengers">Passengers: {details.passengers}</h3>
-          </div>
+          <div className="details-top">
+              <h3 className="flight-name">Departing Flight</h3>
+              <h3 className="trip">{details.from} - {details.to}</h3>
+              <h3 className="date">{fodate}</h3>
+              <h3 className="class">{(details.class === "bc")?"Business Class":"Economy Class"}</h3>
+              <h3 className="passengers">Passengers: {details.passengers}</h3>
+            </div>
           {data.length ? (
             data.map((available) => {
             return (

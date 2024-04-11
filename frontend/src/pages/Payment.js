@@ -19,7 +19,7 @@ import { useLocation } from 'react-router-dom';
 
 const Payment = () => {
     const location = useLocation();
-    const [dataf, setDataf] = React.useState(location.state);
+    const [dataf] = React.useState(location.state);
     const [bookstatus, setBookstatus] = React.useState(false);
     console.log(dataf);
     const flightId = dataf.Details.flightid;

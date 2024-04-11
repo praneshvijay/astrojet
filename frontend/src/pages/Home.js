@@ -5,7 +5,11 @@ const Home = () => {
   return ( 
     <div className="Home">
       <Slideshow/>
+      <br/>
+      <br/>
+      <br/>
       <FlightSearch />
+      
     </div>
   );
 }

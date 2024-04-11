@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
 import React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState} from 'react'
 
 // pages & components
 import Home from './pages/Home'
@@ -21,8 +21,8 @@ import Cancel from './pages/Cancel'
 export const UserProvider = React.createContext();
 
 function App() {
-  const [airport, setAirport] = React.useState([]);
-  const [Loggedin, setLoggedin] = React.useState(false);
+  const [airport, setAirport] = useState([]);
+  const [Loggedin, setLoggedin] = useState(false);
   const { user } = useAuthContext();
   useEffect(() => {   
     const fetchAirports = async () => {
@@ -53,7 +53,7 @@ function App() {
     } else {
       setLoggedin(false);
     }
-  });
+  }, []);
   return (
     <div className="App">
       <BrowserRouter>

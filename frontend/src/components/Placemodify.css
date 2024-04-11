@@ -1,0 +1,80 @@
+.place-modify {
+    width: 90%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5%;
+    gap: 2%;
+    backdrop-filter: blur(10px);
+}
+.place-modify-form{
+    width: 90%;
+}
+
+.way{
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+    margin-left: 0%;
+    margin-bottom: 2%;
+}
+
+.agemod{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    margin-bottom: 2%;
+}
+
+.place{
+    border-radius: 5px;
+}
+
+.place fieldset{
+    height: 80%;
+}
+
+.choose-timemod{
+    display: flex;
+    flex-direction: row;
+    gap: 35%;
+}
+
+.modify{
+    margin-top: 1%;
+    margin-left: 80%;
+}
+
+.modify .modify-button{
+    height: 40px;
+    width: 100%;
+    background-color: #162938;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 6px;
+    outline: none;
+}
+
+.place-modify-form label{
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding-left: 1%;
+    padding-right: 3%;
+}
+
+.place-modify-form legend{
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding-left: 1%;
+    padding-right: 3%;
+}
+
+
+

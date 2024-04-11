@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
-import { useAuthContext } from "../hooks/useAuthContext"
 import { Navigate, useLocation } from "react-router-dom"
 
 const Login = () => {

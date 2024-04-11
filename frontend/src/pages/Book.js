@@ -11,7 +11,7 @@ const cloud_name = "dn54ixooo"
 const Book = () => {
     const location = useLocation();
     // console.log(location);
-    const [Details, setDetails] = React.useState(location.state);
+    const [Details] = React.useState(location.state);
     const [ffmu, setffmu] = useState(false);
     const [ffm, setFfm] = React.useState(0);
     const [fare, setFare] = React.useState(
@@ -43,11 +43,11 @@ const Book = () => {
                 const ffm = await response.json();
                 setFfm(ffm.ffm);
             } catch (error) {
-                console .error('Error fetching ffm details:', error.message);
+                console.error('Error fetching ffm details:', error.message);
             }
         };
         fetchFfm();
-    }, []);
+    });
     async function handleSub(event) {
         console.log("Submitted");
         event.preventDefault();
@@ -75,11 +75,9 @@ const Book = () => {
         var nii = document.getElementsByClassName("infant-lname");
         var ai = document.getElementsByClassName("infant-dob");
         var gi = document.getElementsByClassName("infant-gender");
-        const cert = new FormData();
         var adult = [];
         var child = [];
         var infant = [];
-        const imgs = [];
         var ftm = false;
         for (var i = 0; i < ni.length; i++) {
             const birthDate = new Date(ai[i].value);
@@ -100,7 +98,7 @@ const Book = () => {
                 gender: gi[i].value,
             });
         }
-        for (var i = 0; i < nc.length; i++) {
+        for (i = 0; i < nc.length; i++) {
             const birthDate = new Date(ac[i].value);
             const today = new Date();
             let age = today.getFullYear() - birthDate.getFullYear();
@@ -128,10 +126,8 @@ const Book = () => {
         console.log("signature got")
         console.log("signature got")
 
-        for (var i=1;i<nd.length;i++)
+        for (i=1;i<nd.length;i++)
         {
-            
-
             const data = new FormData()
             data.append("file", cd[i].files[0])
             data.append("api_key", api_key)
@@ -158,7 +154,7 @@ const Book = () => {
 
         console.log(photos);
 
-        for (var i = 1; i < nd.length; i++) {
+        for (i = 1; i < nd.length; i++) {
             if (fd[i].checked) {
                 ftm = true;
             }
@@ -187,7 +183,7 @@ const Book = () => {
 
 
 
-        for (var i = 1; i < n.length; i++) {
+        for (i = 1; i < n.length; i++) {
             if (f[i].checked) {
                 ftm = true;
             }

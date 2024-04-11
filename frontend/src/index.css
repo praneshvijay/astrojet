@@ -67,7 +67,7 @@ input.error {
   padding: 10px;
   align-items: center;
   border-bottom: 1px solid #000000;
-  display: flex;  
+  display: flex;
 }
 
 .logo--image{
@@ -229,4 +229,39 @@ form.signup, form.login {
   margin-bottom: 0px;
 }
 
+.details-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
 
+.flights-header {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center; /* Horizontally center the items */
+  align-items: center; /* Vertically center the items */
+  text-align: center; /* Center the text within its container */
+  padding-bottom: 10px;
+  font-size: x-large
+}
+
+.book-button{
+  background-color: rgb(0, 74, 184);
+  border: 1px solid #000;
+  color: #fff;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 45px;
+}

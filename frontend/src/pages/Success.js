@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { useEffect } from 'react';
 
 const Success = () => {
@@ -29,7 +29,7 @@ const Success = () => {
             }
         }
         Update();
-    }, []);
+    });
     return (
         <div>
             <h2>Payment Successful</h2>

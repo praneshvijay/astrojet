@@ -60,7 +60,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 const Verify = () => {
     const location = useLocation();
-    const [details, setDetails] = useState(location.state);
+    const [details] = useState(location.state);
     const [loading, setLoading] = useState(true);
     const [verifystatus, setVerifyStatus] = useState(null);
 

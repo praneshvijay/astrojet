@@ -1,8 +1,7 @@
 import React from "react";
-import { useState, useEffect} from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom";
 import "./profile.css";
-import { AuthContext } from "../context/AuthContext";
 
 const Profile = () => {
     const [user, setUser] = useState([]);
@@ -34,7 +33,7 @@ const Profile = () => {
                 const user = await response.json();
                 setUser(user);
             } catch (error) {
-                console .error('Error fetching user details:', error.message);
+                console.error('Error fetching user details:', error.message);
             }
         };
         fetchUserDetails();

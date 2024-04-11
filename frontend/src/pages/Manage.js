@@ -24,7 +24,8 @@ const Manage = () => {
           </div>
         );
     }
-    if(bookings.length === 0){
+
+    if(bookings.length === 0 && loading){
         let user1 = localStorage.getItem("user");
         // console.log(user1);
         let email = user1.split('"')[3];
@@ -40,12 +41,11 @@ const Manage = () => {
                 console.log(booking);
                 setLoading(false);
             } catch (error) {
-                console .error('Error fetching booking details:', error.message);
+                console.error('Error fetching booking details:', error.message);
             }
         };
         fetchUserBookings();
     }
-
     return (
         <ManageContext.Provider value={{ bookings, setBookings }}>
             <div className="manage">
@@ -67,7 +67,7 @@ const Manage = () => {
                                     )
                                 } else {
                                     return (
-                                        <div key={booking.id}>
+                                        <div className='round-trip'>
                                             <TwoWay flight={booking} />
                                             <PassengerList flight={booking} />
                                         </div>

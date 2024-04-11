@@ -70,7 +70,7 @@ const PlaceModify = () => {
             arrcode: arrcode,
         };
         const now = new Date();
-        if (date === "" || from === "" || to === "" || from === to) {
+        if (date === "" || from === "" || to === "" || from === to || returndate === "") {
         alert("Invalid Date or source or destination");
         } else {
             const date1 = new Date(date);

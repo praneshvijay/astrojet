@@ -1,7 +1,5 @@
 import React from "react";
 import "./Planes.css";
-import { UserProvider } from "../App";
-import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -19,10 +17,10 @@ export default function Plane(props) {
     var hour2 = parseInt(b[0].split(":")[0]);
     var min1 = parseInt(a[0].split(":")[1]);
     var min2 = parseInt(b[0].split(":")[1]);
-    if (a[1] == "PM" && hour1 != 12) hour1 += 12;
-    if (b[1] == "PM" && hour2 != 12) hour2 += 12;
-    if (a[1] == "AM" && hour1 == 12) hour1 = 0;
-    if (b[1] == "AM" && hour2 == 12) hour2 = 0;
+    if (a[1] === "PM" && hour1 !== 12) hour1 += 12;
+    if (b[1] === "PM" && hour2 !== 12) hour2 += 12;
+    if (a[1] === "AM" && hour1 === 12) hour1 = 0;
+    if (b[1] === "AM" && hour2 ===   12) hour2 = 0;
     const time1 = new Date(year, month, day, hour1, min1);
     const time2 = new Date(year, month, day, hour2, min2);
     var z = time2.getTime() - time1.getTime();

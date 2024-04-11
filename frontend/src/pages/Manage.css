@@ -84,3 +84,15 @@
     backdrop-filter: blur(10px);
     font-size: 1.2rem;
 }
+
+.round-trip{
+    margin: 20px auto;
+    margin-bottom: 50px;
+    padding: 20px 20px;
+    width: 90%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    font-size: 1.2rem;
+}

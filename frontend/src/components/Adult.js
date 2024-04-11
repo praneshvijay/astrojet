@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Book.css";
 
 export default function Adult() {
-  const [adult, setAdult] = React.useState({
+  const [adult, setAdult] = useState({
     fname: "",
     lname: "",
     age: "",

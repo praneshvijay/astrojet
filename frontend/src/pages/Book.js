@@ -5,8 +5,8 @@ import Children from "../components/Children";
 import Infant from "../components/Infant";
 import { Navigate, useLocation } from "react-router-dom";
 import axios from "axios";
-const api_key = "335725625617448"
-const cloud_name = "dn54ixooo"
+const api_key = "<----YOUR_API_KEY---->"
+const cloud_name = "<----YOUR_CLOUD_NAME---->"
 
 const Book = () => {
     const location = useLocation();

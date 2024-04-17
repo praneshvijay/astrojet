@@ -22,6 +22,7 @@ const Payment = () => {
     const [dataf] = React.useState(location.state);
     const [bookstatus, setBookstatus] = React.useState(false);
     console.log(dataf);
+    const option = dataf.Details.details.option;
     const flightId = dataf.Details.flightid;
     const flightId1 = dataf.Details.flightid1;
     const objectId = dataf.Details.objectId;
@@ -32,6 +33,12 @@ const Payment = () => {
     const infants = dataf.Details.details.infants;
     const depcode = dataf.Details.details.depcode;
     const arrcode = dataf.Details.details.arrcode;
+    let classd;
+    if (clas === "bc") {
+        classd = "Business";
+    } else {
+        classd = "Economy";
+    }
     let user1 = localStorage.getItem("user");
     console.log(user1);
     let email = user1.split('"')[3];
@@ -83,14 +90,23 @@ const Payment = () => {
         }
     }
     const handleClick = async() => {
-            await book();
-            fetch("/create-checkout-session", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                items: [
+        await book();
+        let items = []
+        let option;
+        if(dataf.Details.details.option==="one-way"){
+            option = "one-way";
+            items = [
+                {
+                    id: objectId,
+                    class: clas,
+                    adults: adults,
+                    children: children,
+                    infants: infants,
+                }
+            ]
+        } else {
+            option = "round-trip";
+            items = [
                 {
                     id: objectId,
                     class: clas,
@@ -103,27 +119,82 @@ const Payment = () => {
                     class: clas,
                     adults: adults,
                     children: children,
-                    infants: infants,   
-                },
-                ] 
-            }),
-            })
-            .then(res => {
-                if (res.ok) return res.json();
-                return res.json().then(json => Promise.reject(json));
-            })
-            .then(({ url }) => {
-                console.log(url)
-                window.location = url;
-            })
-            .catch(e => {
-                console.error(e.error);
-            });
+                    infants: infants,
+                }
+            ]
+        }
+        fetch("/create-checkout-session", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            items, option, discount: dataf.discount
+        }),
+        })
+        .then(res => {
+            if (res.ok) return res.json();
+            return res.json().then(json => Promise.reject(json));
+        })
+        .then(({ url }) => {
+            console.log(url)
+            window.location = url;
+        })
+        .catch(e => {
+            console.error(e.error);
+        });
     };
 
     return (
         <div>
-        <button onClick={handleClick}>Checkout</button>
+        <h1>Review Journey Details</h1>
+        {option === "one-way" ?
+        <div className='passenger-list'>
+            <div>
+                <h3>Departing Flight</h3>
+                <table>
+                    <tr>
+                        <th>Flight ID</th>
+                        <th>Class</th>
+                        <th>Adults</th>
+                        <th>Children</th>
+                        <th>Infants</th>
+                        <th>Departure Code</th>
+                        <th>Arrival Code</th>
+                    </tr>
+                    <tr>
+                        <td>{flightId}</td>
+                        <td>{classd}</td>
+                        <td>{adults}</td>
+                        <td>{children}</td>
+                        <td>{infants}</td>
+                        <td>{depcode}</td>
+                        <td>{arrcode}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>  
+        :
+        <div>
+            <h3>Departing Flight</h3>
+            <p>Flight ID: {flightId}</p>
+            <p>Class: {clas}</p>
+            <p>Adults: {adults}</p>
+            <p>Children: {children}</p>
+            <p>Infants: {infants}</p>
+            <p>Departure Code: {depcode}</p>
+            <p>Arrival Code: {arrcode}</p>
+            <h3>Return Flight</h3>
+            <p>Flight ID: {flightId1}</p>
+            <p>Class: {clas}</p>
+            <p>Adults: {adults}</p>
+            <p>Children: {children}</p>
+            <p>Infants: {infants}</p>
+            <p>Departure Code: {depcode}</p>
+            <p>Arrival Code: {arrcode}</p>
+        </div> 
+        }
+        <button className="submit-button" onClick={handleClick}>Checkout</button>
         </div>
     );
 };

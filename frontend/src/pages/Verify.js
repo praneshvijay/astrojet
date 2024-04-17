@@ -88,7 +88,12 @@ const Verify = () => {
                 if (response.status === 200) {
                         setVerifyStatus(true);
                         setLoading(false);
-                } else {
+                }
+                else if (response.status === 500)
+                {
+                    
+                } 
+                else {
                     alert("Cowin Ceritificate not Matching");
                     setVerifyStatus(false);
                     setLoading(false);

@@ -168,10 +168,11 @@ const success = async (req, res) => {
 
 const cancel = async (req, res) => {
   const { email } = req.body
-  const status = 'Pending'
+  const status = "Pending"
   try {
-    const booking = await Booking.findOneAndDelete({ user_email: email }, { status: status })
-    res.status(200).json({ message: "Booking cancelled" })
+    const deletedbooking = await Booking.findOneAndDelete({ user_email: email }, { status: status })
+    res.status(200).json(deletedbooking)
+    //res.status(200).json({ message: "Booking cancelled" })
   }
   catch (error) {
     res.status(404).json({ message: error.message })

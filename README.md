@@ -10,4 +10,4 @@ Team Project for Software Engineering Laboratory Course (CS29202) Spring 2024
 
 # Instructions
 1. cd frontend > npm i > npm start
-2. cd backend > npm i > npm rundev
+2. cd backend > npm i > npm run dev
